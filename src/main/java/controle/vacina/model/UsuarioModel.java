@@ -1,6 +1,8 @@
 package controle.vacina.model;
 
 import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,10 +27,12 @@ public class UsuarioModel
 	
 	@NotNull
 	@Size(min = 5)
+	@Column(unique = true)
 	private String email;
 	
 	@NotNull
 	@Size(min = 11)
+	@Column(unique = true)
 	private String cpf;
 	
 	@NotNull
