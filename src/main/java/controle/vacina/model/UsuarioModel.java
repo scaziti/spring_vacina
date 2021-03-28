@@ -1,17 +1,19 @@
 package controle.vacina.model;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuario")
@@ -41,6 +43,18 @@ public class UsuarioModel
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data = new java.sql.Date(System.currentTimeMillis());
+	
+	@NotNull
+	@Size(min = 10)
+	private String primeiraDose;
+	
+	@NotNull
+	@Size(min = 10)
+	private String segundaDose;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("usuario")
+	private VacinaModel vacina;
 	
 	// Getters and Setters
 
@@ -90,6 +104,30 @@ public class UsuarioModel
 
 	public void setData(Date data) {
 		this.data = data;
+	}
+
+	public VacinaModel getVacina() {
+		return vacina;
+	}
+
+	public void setVacina(VacinaModel vacina) {
+		this.vacina = vacina;
+	}
+
+	public String getPrimeiraDose() {
+		return primeiraDose;
+	}
+
+	public void setPrimeiraDose(String primeiraDose) {
+		this.primeiraDose = primeiraDose;
+	}
+
+	public String getSegundaDose() {
+		return segundaDose;
+	}
+
+	public void setSegundaDose(String segundaDose) {
+		this.segundaDose = segundaDose;
 	}
 	
 }
