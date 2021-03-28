@@ -41,6 +41,14 @@ public class UsuarioController
 	@PostMapping
 	public ResponseEntity<UsuarioModel> post(@RequestBody UsuarioModel usuario)
 	{
-		return ResponseEntity.status(HttpStatus.CREATED).body(this.repository.save(usuario));
+
+		try 
+		{
+			return ResponseEntity.status(HttpStatus.CREATED).body(this.repository.save(usuario));
+			
+		} catch (Exception e)
+		{
+			return ResponseEntity.badRequest().build();
+		}
 	}
 }
