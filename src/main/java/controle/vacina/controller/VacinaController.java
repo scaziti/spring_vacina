@@ -29,6 +29,12 @@ public class VacinaController
 		return ResponseEntity.ok(this.repository.findAll());
 	}
 	
+	@GetMapping("/nome/{nomeVacina}")
+	public ResponseEntity<List<VacinaModel>> getByNome(@PathVariable String nomeVacina)
+	{
+		return ResponseEntity.ok(this.repository.findAllByNomeVacinaContainingIgnoreCase(nomeVacina));
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<VacinaModel> getById (@PathVariable Long id)
 	{

@@ -30,6 +30,12 @@ public class UsuarioController
 		return ResponseEntity.ok(this.repository.findAll());
 	}
 	
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<UsuarioModel>> getByNome (@PathVariable String nome)
+	{
+		return ResponseEntity.ok(this.repository.findAllByNomeContainingIgnoreCase(nome));
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<UsuarioModel> getById(@PathVariable Long id)
 	{
